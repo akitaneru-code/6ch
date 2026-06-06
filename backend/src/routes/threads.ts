@@ -73,7 +73,7 @@ router.get('/:id', (req: Request, res: Response) => {
 
 // Create new thread
 router.post('/', (req: Request, res: Response) => {
-  const { title, name = 'Anonymous', body, email } = req.body;
+  const { title, name = 'Anonymous', body, email, image_path, image_name, image_size } = req.body;
 
   if (!title || !body) {
     res.status(400).json({ error: 'Title and body are required' });
@@ -98,8 +98,11 @@ router.post('/', (req: Request, res: Response) => {
         }
 
         db.run(
-          `INSERT INTO posts (id, thread_id, name, email, body, created_at, is_op) VALUES (?, ?, ?, ?, ?, ?, 1)`,
-          [postId, threadId, name, email || null, body, new Date().toISOString()],
+          `INSERT INTO posts (id, thread_id, name, email, body, image_path, image_name, image_size, created_at, is_op)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1)`,
+          [postId, threadId, name, email || null, body,
+           image_path || null, image_name || null, image_size || null,
+           new Date().toISOString()],
           (err) => {
             if (err) {
               db.run('ROLLBACK');

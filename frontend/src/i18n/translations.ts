@@ -14,6 +14,7 @@ export interface Translations {
   nameLabel: string
   messageLabel: string
   subjectLabel: string
+  imageLabel: string
   titlePlaceholder: string
   anonymousPlaceholder: string
   messagePlaceholder: string
@@ -23,6 +24,7 @@ export interface Translations {
   createThread: string
   titleBodyRequired: string
   failedCreateThread: string
+  failedUploadImage: string
   errorOccurred: string
   replyToThread: string
   posting: string
@@ -32,6 +34,10 @@ export interface Translations {
   lastUpdated: string
   loadingPosts: string
   postNo: string
+  imageSelectBtn: string
+  imageRemoveBtn: string
+  imageUploading: string
+  imageAllowedTypes: string
 }
 
 export const translations: Record<LangCode, Translations> = {
@@ -58,6 +64,7 @@ export const translations: Record<LangCode, Translations> = {
     createThread: '스레드 만들기',
     titleBodyRequired: '제목과 내용은 필수입니다',
     failedCreateThread: '스레드 생성에 실패했습니다',
+    failedUploadImage: '이미지 업로드에 실패했습니다',
     errorOccurred: '오류가 발생했습니다',
     replyToThread: '답글 달기',
     posting: '게시 중...',
@@ -67,6 +74,11 @@ export const translations: Record<LangCode, Translations> = {
     lastUpdated: '최근:',
     loadingPosts: '게시물 불러오는 중...',
     postNo: '번',
+    imageLabel: '이미지',
+    imageSelectBtn: '파일 선택',
+    imageRemoveBtn: '제거',
+    imageUploading: '이미지 업로드 중...',
+    imageAllowedTypes: 'JPG, PNG, GIF, WEBP (최대 10MB)',
   },
   en: {
     langName: 'English',
@@ -91,6 +103,7 @@ export const translations: Record<LangCode, Translations> = {
     createThread: 'Create Thread',
     titleBodyRequired: 'Title and body are required',
     failedCreateThread: 'Failed to create thread',
+    failedUploadImage: 'Failed to upload image',
     errorOccurred: 'An error occurred',
     replyToThread: 'Reply to Thread',
     posting: 'Posting...',
@@ -100,6 +113,11 @@ export const translations: Record<LangCode, Translations> = {
     lastUpdated: 'Last:',
     loadingPosts: 'Loading posts...',
     postNo: 'No.',
+    imageLabel: 'Image',
+    imageSelectBtn: 'Choose file',
+    imageRemoveBtn: 'Remove',
+    imageUploading: 'Uploading image...',
+    imageAllowedTypes: 'JPG, PNG, GIF, WEBP (max 10MB)',
   },
   yue: {
     langName: '廣東話',
@@ -124,6 +142,7 @@ export const translations: Record<LangCode, Translations> = {
     createThread: '整帖子',
     titleBodyRequired: '標題同內容係必填',
     failedCreateThread: '整帖子失敗',
+    failedUploadImage: '上載圖片失敗',
     errorOccurred: '出錯咗',
     replyToThread: '回覆帖子',
     posting: '發緊...',
@@ -133,6 +152,11 @@ export const translations: Record<LangCode, Translations> = {
     lastUpdated: '最新：',
     loadingPosts: '載入中...',
     postNo: '第',
+    imageLabel: '圖片',
+    imageSelectBtn: '揀檔案',
+    imageRemoveBtn: '移除',
+    imageUploading: '上載圖片中...',
+    imageAllowedTypes: 'JPG、PNG、GIF、WEBP（最大 10MB）',
   },
   szeyup: {
     langName: '四縣客家話',
@@ -157,6 +181,7 @@ export const translations: Record<LangCode, Translations> = {
     createThread: '發討論串',
     titleBodyRequired: '標題同內容係必要个',
     failedCreateThread: '發討論串失敗',
+    failedUploadImage: '上載圖片失敗',
     errorOccurred: '出問題了',
     replyToThread: '回覆討論串',
     posting: '發緊...',
@@ -166,6 +191,11 @@ export const translations: Record<LangCode, Translations> = {
     lastUpdated: '最新：',
     loadingPosts: '載入中...',
     postNo: '第',
+    imageLabel: '圖片',
+    imageSelectBtn: '揀檔案',
+    imageRemoveBtn: '移除',
+    imageUploading: '上載圖片中...',
+    imageAllowedTypes: 'JPG、PNG、GIF、WEBP（最大 10MB）',
   },
   br: {
     langName: 'Brezhoneg',
@@ -190,6 +220,7 @@ export const translations: Record<LangCode, Translations> = {
     createThread: 'Krouiñ filten',
     titleBodyRequired: 'Ret eo ar titl hag ar c\'horf',
     failedCreateThread: 'C\'hwitet eo ar c\'hrouidigezh',
+    failedUploadImage: 'C\'hwitet eo an upload',
     errorOccurred: 'Degouezhet ez eus ur fazi',
     replyToThread: 'Respont d\'ar filten',
     posting: 'O postiñ...',
@@ -199,5 +230,10 @@ export const translations: Record<LangCode, Translations> = {
     lastUpdated: 'Diwezhañ:',
     loadingPosts: 'O kargañ...',
     postNo: 'Niv.',
+    imageLabel: 'Skeudenn',
+    imageSelectBtn: 'Dibab restr',
+    imageRemoveBtn: 'Lemel',
+    imageUploading: 'O pellgargañ skeudenn...',
+    imageAllowedTypes: 'JPG, PNG, GIF, WEBP (10MB d\'ar muiañ)',
   },
 }

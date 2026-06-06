@@ -28,6 +28,7 @@
   width: 100%;
   padding: 4px;
   border: 1px solid #999;
+  box-sizing: border-box;
 }
 
 .form-group textarea {
@@ -35,16 +36,22 @@
   min-height: 100px;
 }
 
-.create-thread-form button {
+.create-thread-form > button[type="submit"] {
   background-color: #0066cc;
   color: #fff;
   border: 1px solid #000;
   padding: 6px 12px;
   font-weight: bold;
+  cursor: pointer;
 }
 
-.create-thread-form button:hover:not(:disabled) {
+.create-thread-form > button[type="submit"]:hover:not(:disabled) {
   background-color: #0052a3;
+}
+
+.create-thread-form > button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .error-message {
@@ -53,4 +60,81 @@
   padding: 8px;
   border: 1px solid #cc0000;
   margin-bottom: 12px;
+}
+
+/* Image upload */
+.image-upload-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.file-input-hidden {
+  display: none;
+}
+
+.file-select-btn {
+  background-color: #555;
+  color: #fff;
+  border: 1px solid #333;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.file-select-btn:hover:not(.disabled) {
+  background-color: #333;
+}
+
+.file-select-btn.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.image-filename {
+  font-size: 12px;
+  color: #333;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.image-remove-btn {
+  background: transparent;
+  color: #cc0000;
+  border: 1px solid #cc0000;
+  padding: 3px 8px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.image-remove-btn:hover {
+  background-color: #ffeeee;
+}
+
+.image-allowed-types {
+  font-size: 11px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.image-preview-wrap {
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  display: inline-block;
+  background: #fff;
+  padding: 4px;
+}
+
+.image-preview {
+  max-width: 200px;
+  max-height: 200px;
+  display: block;
+  object-fit: contain;
 }
