@@ -1,0 +1,47 @@
+.6ch-container {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.6ch-header {
+  background-color: #000080;
+  color: #fff;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #000;
+}
+
+.6ch-header h1 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.6ch-header button {
+  background-color: #0000ff;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 4px 12px;
+  font-weight: bold;
+}
+
+.6ch-header button:hover {
+  background-color: #0000cc;
+}
+
+.back-btn {
+  font-size: 14px;
+}
+
+.create-btn {
+  font-size: 14px;
+}
+
+.no-threads {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+}
