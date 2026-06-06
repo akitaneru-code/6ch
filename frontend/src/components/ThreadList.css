@@ -1,0 +1,52 @@
+.thread-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 8px;
+  background-color: #999;
+}
+
+.thread-item {
+  background-color: #efefef;
+  padding: 8px;
+  cursor: pointer;
+  border: 1px solid #999;
+  transition: background-color 0.2s;
+}
+
+.thread-item:hover {
+  background-color: #ddd;
+}
+
+.thread-header {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.thread-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+  color: #0000ff;
+  text-decoration: underline;
+  flex: 1;
+}
+
+.thread-count {
+  font-size: 12px;
+  color: #666;
+}
+
+.thread-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: #666;
+}
+
+.created, .updated {
+  display: flex;
+  align-items: center;
+}
