@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import type { Thread, Post } from '../types'
 import CreatePostForm from './CreatePostForm'
+import { useLang } from '../i18n/LangContext'
 import './ThreadDetail.css'
 
 interface ThreadDetailProps {
@@ -9,6 +10,7 @@ interface ThreadDetailProps {
 }
 
 export default function ThreadDetail({ thread, onPostCreated }: ThreadDetailProps) {
+  const { t } = useLang()
   const [posts, setPosts] = useState<Post[]>(thread.posts || [])
   const [loading, setLoading] = useState(false)
 
@@ -36,7 +38,7 @@ export default function ThreadDetail({ thread, onPostCreated }: ThreadDetailProp
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
-    return date.toLocaleDateString('ko-KR', {
+    return date.toLocaleDateString(t.dateLocale, {
       month: '2-digit',
       day: '2-digit',
       hour: '2-digit',
@@ -52,13 +54,13 @@ export default function ThreadDetail({ thread, onPostCreated }: ThreadDetailProp
       </div>
 
       {loading ? (
-        <div className="loading">Loading posts...</div>
+        <div className="loading">{t.loadingPosts}</div>
       ) : (
         <div className="posts-container">
           {posts.map((post, index) => (
             <div key={post.id} className={`post ${post.is_op ? 'op' : ''}`}>
               <div className="post-header">
-                <span className="post-number">No.{index + 1}</span>
+                <span className="post-number">{t.postNo}{index + 1}</span>
                 <span className="post-name">{post.name}</span>
                 {post.email && <span className="post-email">{post.email}</span>}
                 <span className="post-date">{formatDate(post.created_at)}</span>

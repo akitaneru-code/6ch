@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { Thread } from '../types'
+import { useLang } from '../i18n/LangContext'
 import './CreateThreadForm.css'
 
 interface CreateThreadFormProps {
@@ -7,6 +8,7 @@ interface CreateThreadFormProps {
 }
 
 export default function CreateThreadForm({ onThreadCreated }: CreateThreadFormProps) {
+  const { t } = useLang()
   const [title, setTitle] = useState('')
   const [name, setName] = useState('')
   const [body, setBody] = useState('')
@@ -18,7 +20,7 @@ export default function CreateThreadForm({ onThreadCreated }: CreateThreadFormPr
     setError('')
 
     if (!title.trim() || !body.trim()) {
-      setError('Title and body are required')
+      setError(t.titleBodyRequired)
       return
     }
 
@@ -35,7 +37,7 @@ export default function CreateThreadForm({ onThreadCreated }: CreateThreadFormPr
       })
 
       if (!response.ok) {
-        throw new Error('Failed to create thread')
+        throw new Error(t.failedCreateThread)
       }
 
       const thread = await response.json()
@@ -44,7 +46,7 @@ export default function CreateThreadForm({ onThreadCreated }: CreateThreadFormPr
       setName('')
       setBody('')
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred')
+      setError(err instanceof Error ? err.message : t.errorOccurred)
     } finally {
       setLoading(false)
     }
@@ -52,45 +54,45 @@ export default function CreateThreadForm({ onThreadCreated }: CreateThreadFormPr
 
   return (
     <form className="create-thread-form" onSubmit={handleSubmit}>
-      <h2>Create New Thread</h2>
-      
+      <h2>{t.createNewThread}</h2>
+
       {error && <div className="error-message">{error}</div>}
 
       <div className="form-group">
-        <label>Title *</label>
+        <label>{t.titleLabel}</label>
         <input
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Thread title"
+          placeholder={t.titlePlaceholder}
           disabled={loading}
         />
       </div>
 
       <div className="form-group">
-        <label>Name</label>
+        <label>{t.nameLabel}</label>
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Anonymous"
+          placeholder={t.anonymousPlaceholder}
           disabled={loading}
         />
       </div>
 
       <div className="form-group">
-        <label>Message *</label>
+        <label>{t.messageLabel}</label>
         <textarea
           value={body}
           onChange={(e) => setBody(e.target.value)}
-          placeholder="Enter your message"
+          placeholder={t.messagePlaceholder}
           rows={6}
           disabled={loading}
         />
       </div>
 
       <button type="submit" disabled={loading}>
-        {loading ? 'Creating...' : 'Create Thread'}
+        {loading ? t.creating : t.createThread}
       </button>
     </form>
   )

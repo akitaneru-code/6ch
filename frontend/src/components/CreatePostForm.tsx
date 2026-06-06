@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useLang } from '../i18n/LangContext'
 import './CreatePostForm.css'
 
 interface CreatePostFormProps {
@@ -7,6 +8,7 @@ interface CreatePostFormProps {
 }
 
 export default function CreatePostForm({ threadId, onPostCreated }: CreatePostFormProps) {
+  const { t } = useLang()
   const [name, setName] = useState('')
   const [subject, setSubject] = useState('')
   const [body, setBody] = useState('')
@@ -18,7 +20,7 @@ export default function CreatePostForm({ threadId, onPostCreated }: CreatePostFo
     setError('')
 
     if (!body.trim()) {
-      setError('Message is required')
+      setError(t.messageRequired)
       return
     }
 
@@ -35,7 +37,7 @@ export default function CreatePostForm({ threadId, onPostCreated }: CreatePostFo
       })
 
       if (!response.ok) {
-        throw new Error('Failed to create post')
+        throw new Error(t.failedCreatePost)
       }
 
       onPostCreated()
@@ -43,7 +45,7 @@ export default function CreatePostForm({ threadId, onPostCreated }: CreatePostFo
       setSubject('')
       setBody('')
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred')
+      setError(err instanceof Error ? err.message : t.errorOccurred)
     } finally {
       setLoading(false)
     }
@@ -51,47 +53,47 @@ export default function CreatePostForm({ threadId, onPostCreated }: CreatePostFo
 
   return (
     <form className="create-post-form" onSubmit={handleSubmit}>
-      <h3>Reply to Thread</h3>
-      
+      <h3>{t.replyToThread}</h3>
+
       {error && <div className="error-message">{error}</div>}
 
       <div className="form-row">
         <div className="form-group">
-          <label>Name</label>
+          <label>{t.nameLabel}</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Anonymous"
+            placeholder={t.anonymousPlaceholder}
             disabled={loading}
           />
         </div>
 
         <div className="form-group">
-          <label>Subject</label>
+          <label>{t.subjectLabel}</label>
           <input
             type="text"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
-            placeholder="Optional"
+            placeholder={t.subjectPlaceholder}
             disabled={loading}
           />
         </div>
       </div>
 
       <div className="form-group">
-        <label>Message *</label>
+        <label>{t.messageLabel}</label>
         <textarea
           value={body}
           onChange={(e) => setBody(e.target.value)}
-          placeholder="Enter your reply"
+          placeholder={t.replyPlaceholder}
           rows={4}
           disabled={loading}
         />
       </div>
 
       <button type="submit" disabled={loading}>
-        {loading ? 'Posting...' : 'Post Reply'}
+        {loading ? t.posting : t.postReply}
       </button>
     </form>
   )

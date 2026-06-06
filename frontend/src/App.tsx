@@ -2,10 +2,13 @@ import { useEffect, useState } from 'react'
 import ThreadList from './components/ThreadList'
 import ThreadDetail from './components/ThreadDetail'
 import CreateThreadForm from './components/CreateThreadForm'
+import LangSelector from './components/LangSelector'
+import { useLang } from './i18n/LangContext'
 import type { Thread } from './types'
 import './App.css'
 
 function App() {
+  const { t } = useLang()
   const [threads, setThreads] = useState<Thread[]>([])
   const [selectedThread, setSelectedThread] = useState<Thread | null>(null)
   const [showCreateForm, setShowCreateForm] = useState(false)
@@ -38,15 +41,18 @@ function App() {
     return (
       <div className="6ch-container">
         <header className="6ch-header">
-          <h1>6ch - Anonymous Imageboard</h1>
-          <button 
-            className="back-btn"
-            onClick={() => setSelectedThread(null)}
-          >
-            ← Back to Threads
-          </button>
+          <h1>{t.siteTitle}</h1>
+          <div className="header-right">
+            <LangSelector />
+            <button
+              className="back-btn"
+              onClick={() => setSelectedThread(null)}
+            >
+              {t.backToThreads}
+            </button>
+          </div>
         </header>
-        <ThreadDetail 
+        <ThreadDetail
           thread={selectedThread}
           onPostCreated={() => {
             fetchThreads()
@@ -59,13 +65,16 @@ function App() {
   return (
     <div className="6ch-container">
       <header className="6ch-header">
-        <h1>6ch - Anonymous Imageboard</h1>
-        <button 
-          className="create-btn"
-          onClick={() => setShowCreateForm(!showCreateForm)}
-        >
-          {showCreateForm ? '✕ Close' : '+ New Thread'}
-        </button>
+        <h1>{t.siteTitle}</h1>
+        <div className="header-right">
+          <LangSelector />
+          <button
+            className="create-btn"
+            onClick={() => setShowCreateForm(!showCreateForm)}
+          >
+            {showCreateForm ? t.close : t.newThread}
+          </button>
+        </div>
       </header>
 
       {showCreateForm && (
@@ -73,11 +82,11 @@ function App() {
       )}
 
       {loading ? (
-        <div className="loading">Loading threads...</div>
+        <div className="loading">{t.loadingThreads}</div>
       ) : threads.length === 0 ? (
-        <div className="no-threads">No threads yet. Create one!</div>
+        <div className="no-threads">{t.noThreads}</div>
       ) : (
-        <ThreadList 
+        <ThreadList
           threads={threads}
           onSelectThread={setSelectedThread}
         />
